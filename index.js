@@ -52,9 +52,10 @@ re: code below for pg
 */
 
 const pg = require('pg');
+const DATABASE_URL = 'postgres://oqpmdpcamvinny:e74eb614b216308c9363a0f0b544087aa06b96b9513d8c3e451ad0881f74ddd8@ec2-54-235-73-241.compute-1.amazonaws.com:5432/d7mqliq5he70ot';
 
 app.get('/db', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function (err, client, done) {
+  pg.connect(`process.env.${DATABASE_URL}`, function (err, client, done) {
     client.query('SELECT * FROM test_table', function(err, result) {
       done();
       if (err)
